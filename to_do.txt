@@ -1,0 +1,24 @@
+#what do you need in the otp working directory?
+#python script - I don't think this needs to be here - could be run from somewhere else
+
+#1. make the working directory
+
+for year in 2014 2015 2016 2017 2018 2019 2020 2021
+    for month in 01 04 07 10
+
+    do
+        mkdir "otp_wd_${year}_${month}"
+    done
+
+#2. copy correct year osm.pbf to dir
+##for this need a list of the dates and months I will be doing this on, then a copy of the osm for each of them
+#3. copy correct date gtfs to dir
+##check whether exists for the month being done, or if not, the month before
+#4. make graph directory
+mkdir -p graphs/gb
+#4. build the graph
+java -Xmx2G -d64 -server -jar ../otp-1.2.0-shaded.jar --basePath . --build .
+#5. remove used osm and gtfs zipfiles
+
+#6. run the cycle using a script
+java -cp otp-1.2.0-shaded.jar:jython-standalone-2.7.0.jar org.opentripplanner.standalone.OTPMain --script generalised_accessibility_loop_all_years_dates.py
