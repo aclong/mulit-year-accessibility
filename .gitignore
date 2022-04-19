@@ -1,0 +1,14 @@
+#all data files and operational otp files
+*.csv
+*.jar
+*.obj
+*.zip
+*.pbf
+*.osm
+*.out
+
+#all directories
+20*
+
+otp_wd_*
+
